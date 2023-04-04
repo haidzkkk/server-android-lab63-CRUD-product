@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body style="padding: 100px;">
+    <h1>Form add product</h1>
+  <form action="<%= productEdit?.id ? '/product/edit/' + productEdit.id : '/product/add' %>" method="POST">
+    <div class="form-group">
+      <label for="name">Name product:</label>
+      <input type="text" value="<%= productEdit?.name %>" class="form-control" name="name" required>
+    </div>
+    <div class="form-group">
+      <label for="price">Price:</label>
+      <input type="number" class="form-control"  name="price" value="<%= productEdit?.price %>" required>
+    </div>
+    <div class="form-group">
+      <label for="quantity">Quantity:</label>
+      <input type="number" class="form-control"  name="quantity" value="<%= productEdit?.quantity %>" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Add </button>
+    </form> 
+  
+</body>
+</html>

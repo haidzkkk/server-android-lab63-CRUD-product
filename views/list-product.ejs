@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h2>PRODUCTS</h2>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% products.forEach(function(product, index) { %>
+                    <tr>
+                        <td>
+                            <%= index+1 %>
+                        </td>
+                        <td>
+                            <%= product.name %>
+                        </td>
+                        <td>
+                            <%= product.price %>đ
+                        </td>
+                        <td>
+                            <%= product.quantity %>
+                        </td>
+                        <td>
+                            <a href="/form/add/<%= product.id %>" class="btn btn-warning">Sửa</a>
+                        </td>
+                        <td>
+                            <button class="btn btn-danger delete-btn" data-id="<%= product._id %>" data-name="<%= product.name %>">Xóa</button>
+                        </td>
+                    </tr>
+                    <% }); %>
+            </tbody>
+        </table>
+        <a href="/form/add" class="btn btn-primary mb-3">Add product</a>
+
+        <script>
+            const deleteButtons = document.querySelectorAll('.delete-btn');
+            deleteButtons.forEach(button => {
+            button.addEventListener('click', function(event) {
+              event.preventDefault();
+              const id = button.dataset.id;
+              const result = confirm('Bạn có chắc muốn xóa này không?');
+              if (result) {
+                window.location.href = "/product/delete/"+id;
+              }
+            });
+          });
+          </script>
+    </div>
+</body>
+
+</html>
